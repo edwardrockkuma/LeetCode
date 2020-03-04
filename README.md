@@ -1,2 +1,2 @@
 # LeetCode
-self traning
+Self training via leetcode.

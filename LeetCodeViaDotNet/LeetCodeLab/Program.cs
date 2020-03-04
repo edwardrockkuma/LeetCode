@@ -7,13 +7,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+
 namespace LeetCodeLab
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            //CreateHostBuilder(args).Build().Run();
+
+            BinaryGap binaryGap = new BinaryGap();
+            binaryGap.FindMaxGap(529);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
