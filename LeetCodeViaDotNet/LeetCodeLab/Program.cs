@@ -16,8 +16,15 @@ namespace LeetCodeLab
         {
             //CreateHostBuilder(args).Build().Run();
 
-            BinaryGap binaryGap = new BinaryGap();
-            binaryGap.FindMaxGap(529);
+            //BinaryGap binaryGap = new BinaryGap();
+            //binaryGap.FindMaxGap(2147483600);
+            //binaryGap.FindMaxGap(529);
+            Solution77 sol77 = new Solution77();
+            if(sol77.IsValid("{[]}"))
+            {
+                Console.WriteLine("right");
+            }
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -58,6 +58,63 @@ namespace LeetCodeLab
     }
 
     /// <summary>
+    /// Valid Parenthese -LeetCode
+    /// Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+    // An input string is valid if:
+    // Open brackets must be closed by the same type of brackets.
+    // Open brackets must be closed in the correct order.
+    // Note that an empty string is also considered valid.
+    /// </summary>
+    public class Solution77
+    {
+        public bool IsValid(string targetStr)
+        {
+            if(string.IsNullOrEmpty(targetStr))
+            {
+                return true;
+            }
+
+            Dictionary<Char , Char> container = new Dictionary<char, char>();
+            container.Add(')','('); 
+            container.Add('}','{');
+            container.Add(']','[');
+            Stack<Char> tempStack = new Stack<Char>();
+            int length = targetStr.Length;
+            
+            if(length % 2 == 1)
+            {
+                return false;
+            }
+
+            for(int i=0; i < length ; i++)
+            {
+                Char charNow = targetStr[i];
+                if(container.ContainsValue(charNow) )
+                {
+                    tempStack.Push(charNow);
+                }
+                else
+                {
+                    if(tempStack.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    if(tempStack.Peek() == container[charNow])
+                    {
+                        tempStack.Pop();
+                    }
+                }
+                
+                
+                //Console.WriteLine(charNow);
+            }
+            
+            return tempStack.Count == 0;
+        }
+    }
+
+    /// <summary>
     /// BinaryGap - Codility , date: 20200304, Time complexity issue founded
     /// [Q]:A binary gap within a positive integer N is any maximal sequence of consecutive zeros 
     /// that is surrounded by ones at both ends in the binary representation of N.
@@ -67,10 +124,15 @@ namespace LeetCodeLab
     /// </summary>
     public class BinaryGap
     {
+        
         public int FindMaxGap(int N )
         {
+                       
             bool started = false;
             int length = 0, max = 0;
+            try 
+            {
+
             // Tips: uint & bit operator 
             for (uint i = 1; i <= N; i<<=1)
             {
@@ -89,13 +151,23 @@ namespace LeetCodeLab
                 }
                 else if(started)
                 {
-                    length++;
-                    Console.WriteLine($"started:i:{i} , length: {length}");
+                    ++length;
+                    //Console.WriteLine($"started:i:{i} , length: {length}");
                 }
                 //Console.WriteLine(i);
             }
 
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+
+            Console.WriteLine($"Max: {max}");
             return max;
         }
     }
+
+
+
 }
