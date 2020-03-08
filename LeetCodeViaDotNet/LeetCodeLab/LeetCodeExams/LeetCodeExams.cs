@@ -7,6 +7,7 @@ namespace LeetCodeLab
 {
     /// <summary>
     /// TwoSum - LeetCode
+    /// Tips: Hash or Dictionary
     /// </summary>
     public class Solution1
     {
@@ -59,6 +60,7 @@ namespace LeetCodeLab
 
     /// <summary>
     /// Valid Parenthese -LeetCode
+    /// Tips: Stack
     /// Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
     // An input string is valid if:
     // Open brackets must be closed by the same type of brackets.
@@ -115,7 +117,65 @@ namespace LeetCodeLab
     }
 
     /// <summary>
+    // Tips: Recursive
+    ///  Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+    // For example, given n = 3, a solution set is:
+    /* 
+    [
+        "((()))",
+        "(()())",
+        "(())()",
+        "()(())",
+        "()()()"
+    ] 
+    */
+    /// </summary>
+    public class Solution22 {
+        public IList<string> GenerateParenthesis(int n) {
+            List<string> results = new List<string>();
+            string ans = "";
+            Generator(n , n , ans);
+            foreach(var str in container)
+            {
+                results.Add(str);
+            }
+            results.Reverse();
+
+            return results;
+        }
+        Stack<string> container = new Stack<string>();
+
+        private void Generator(int left , int right , string str)
+        {
+            if(left == 0 && right == 0)
+            {
+                container.Push(str);
+                Console.WriteLine($"final , str:{str}");
+            }
+
+            if(left > 0)
+            {
+                Console.WriteLine($"left:{left} , str:{str}");
+                Generator(left-1 , right , str+'(');
+                
+            }
+
+            if(right > 0 && left < right)
+            {
+                Console.WriteLine($"right:{right} , str:{str}");
+                Generator(left , right -1 , str+')');
+            }
+        } 
+
+        public void Execute()
+        {
+            var ans = GenerateParenthesis(3);
+        }
+    }
+
+    /// <summary>
     /// BinaryGap - Codility , date: 20200304, Time complexity issue founded
+    /// Tips: Bit operator (<<)
     /// [Q]:A binary gap within a positive integer N is any maximal sequence of consecutive zeros 
     /// that is surrounded by ones at both ends in the binary representation of N.
     /// Write a function: that, given a positive integer N, returns the length of its longest binary gap. The function should return 0 if N doesn't contain a binary gap.

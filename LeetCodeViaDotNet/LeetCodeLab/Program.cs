@@ -19,12 +19,14 @@ namespace LeetCodeLab
             //BinaryGap binaryGap = new BinaryGap();
             //binaryGap.FindMaxGap(2147483600);
             //binaryGap.FindMaxGap(529);
-            Solution77 sol77 = new Solution77();
-            if(sol77.IsValid("{[]}"))
-            {
-                Console.WriteLine("right");
-            }
+            // Solution77 sol77 = new Solution77();
+            // if(sol77.IsValid("{[]}"))
+            // {
+            //     Console.WriteLine("right");
+            // }
 
+            Solution22 sol22 = new Solution22();
+            sol22.Execute();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
