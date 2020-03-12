@@ -5,6 +5,55 @@ using System.Text;
 
 namespace LeetCodeLab
 {
+    // TODO: Split the Solutions into Groups by different type. Ex: Divide & Conquer
+ 
+    /// <summary>
+    /// Fibonacci Number - easy
+    /// The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1.
+    /// 0 ≤ N ≤ 30.
+    /// </summary>
+    public class Solution509
+    {
+        public int Fib(int N) 
+        {
+            if(N < 0 || N > 30)
+                return -1;
+
+            int result = 0;
+            if(N == 0)
+                return result;
+
+            if(N == 1)
+            {
+                result = 1;
+                return result;
+            }
+
+
+            int big = 0;
+            int small = 0;  
+                        
+            for(int i = 2; i <= N; i++)
+            {
+                if(i == 2)
+                {
+                    big = i-1;
+                    small = i-2;
+                }
+                else
+                {
+                    small = big;
+                    big = result;                  
+                }
+                                
+                result = big + small;
+                 
+            }
+
+            return result;
+        }
+    } 
+
     /// <summary>
     /// TwoSum - LeetCode
     /// Tips: Hash or Dictionary
