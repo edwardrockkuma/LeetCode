@@ -8,6 +8,42 @@ namespace LeetCodeLab
     // TODO: Split the Solutions into Groups by different type. Ex: Divide & Conquer
  
     /// <summary>
+    /// 70. Climbing Stairs - easy
+    /// You are climbing a stair case. It takes n steps to reach to the top.
+    /// Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+    /// Note: Given n will be a positive integer.
+    /// Tips: advanced Fibonacci
+    ///   f(1) = 1 , f(2) = 2 , f(3) = f(2) + f(1) , f(4) = f(3) + f(2)
+    //  analyze: we can divide to 2 ways:  A. 最後差一步 + B.最後差兩步
+    ///   f(n) = f(n-1) + f(n-2) 
+    /// </summary>
+    public class Solution70
+    {
+        public int ClimbStairs(int n) 
+        {
+            int result = 0;
+            if(n == 1)
+                return 1;
+
+            if(n == 2)
+                return 2; 
+            int big = 2;
+            int small = 1;
+           
+            for(int i = 3; i < n+1 ; i++)
+            {
+                
+                result = big + small;
+                small = big;
+                big = result;
+                
+            }   
+
+            return result;  
+        }
+    }
+
+    /// <summary>
     /// Fibonacci Number - easy
     /// The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1.
     /// 0 ≤ N ≤ 30.
