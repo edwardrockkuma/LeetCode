@@ -2,10 +2,101 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+
 
 namespace LeetCodeLab
 {
     // TODO: Split the Solutions into Groups by different type. Ex: Divide & Conquer
+
+    /// <summary>
+    /// A Reusable Test Model
+    /// </summary>
+    public class TestCase
+    {
+        public bool IsValid { get; set; }
+        public object[] _parameters { get; set; }
+
+        public TestCase(object[] parameters)
+        {
+            _parameters = parameters;
+        }
+
+        
+    }
+
+    public class ArrayHelper{
+        //  public int[][] ConvertToJaggedArray(object objArr)
+        // {
+        //     objArr.Select(line => line
+        //     .Select(item => item.ToString())
+        //     .ToArray())
+        //     .ToArray();
+        // }
+    }
+   
+
+    /// <summary>
+    /// 74. Search a 2D Matrix - Medium
+    /// Write an efficient algorithm that searches 
+    /// for a value in an m x n matrix. This matrix has the following properties:
+    /// * Integers in each row are sorted from left to right.
+    /// * The first integer of each row is greater than the last integer of the previous row.
+    /// </summary>
+    public class Solution74
+    {
+        private int[][] _matrix { get; set;}
+        private int _target { get; set; }
+
+        public Solution74( TestCase data)
+        {
+            _matrix = data._parameters[0] as int[][]; 
+            _target = (int)(data._parameters[1]);
+            data.IsValid = SearchMatrix(_matrix , _target);
+        }
+
+        public bool SearchMatrix(int[][] matrix, int target) 
+        {
+            /*
+                1. from the max value in every row , if target > max , then go next row
+                2. loop 
+                Two-dimensional GetLength example:
+                int[,] two = new int[5, 10];
+                Console.WriteLine(two.GetLength(0)); // Writes 5
+                Console.WriteLine(two.GetLength(1)); // Writes 10
+                Console.WriteLine(two.Length);  // Writes 50
+            */
+            int total = matrix.Length;
+            if(total == 0)
+                return false;
+
+            int rowsOrHeight = matrix.GetLength(0);
+           // int colsOrWidth = total / rowsOrHeight;
+            int colsOrWidth = matrix[0].Length;
+            int colIdx = colsOrWidth-1;
+            int rowIdx = 0;
+            int value = 0;
+            while(rowIdx < rowsOrHeight && colIdx >= 0)
+            {
+                value = matrix[rowIdx][colIdx];
+                if(target  == value)
+                {
+                   return true;                  
+                }
+                else if(value > target)
+                {
+                    colIdx -= 1;
+                  
+                }
+                else
+                {
+                    rowIdx += 1;
+                    colIdx = colsOrWidth-1;
+                }
+            }
+            return false;
+        }
+    }
  
     /// <summary>
     /// 70. Climbing Stairs - easy
