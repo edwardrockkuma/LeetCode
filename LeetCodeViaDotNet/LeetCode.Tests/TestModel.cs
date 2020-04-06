@@ -9,7 +9,7 @@ namespace LeetCode.Tests
     {
         public abstract object[] ToParameterArray();
 
-        public static ITheoryDatum Factory<TSystemUnderTest, TExpectedOutput>(TSystemUnderTest sut, TExpectedOutput expectedOutput, string description)
+        public static ITheoryDatum Factory<TSystemUnderTest, TExpectedOutput>(TSystemUnderTest sut, TExpectedOutput expectedOutput, string description = "")
         {
             var datum= new TheoryDatum<TSystemUnderTest, TExpectedOutput>();
             datum.SystemUnderTest = sut;
